@@ -110,21 +110,3 @@ categorical_transformer = Pipeline(steps=[
     ('imputer', SimpleImputer(strategy='constant', fill_value='missing')),
     ('onehot', OneHotEncoder(handle_unknown='ignore', sparse_output=False))
 ])
-
-# Column Transformer to combine all
-preprocessor = ColumnTransformer(
-    transformers=[
-        ('id', id_transformer, ['SK_ID_CURR']),
-        ('num', numeric_transformer, ["REG_CITY_NOT_LIVE_CITY", "EXT_SOURCE_1", "EXT_SOURCE_2", "EXT_SOURCE_3", "YEARS_BEGINEXPLUATATION_MODE", "COMMONAREA_MODE", "FLOORSMAX_MODE", "LIVINGAPARTMENTS_MODE", "YEARS_BUILD_MEDI"]),
-        ('birth_publish', combined_transformer, ['DAYS_BIRTH', 'DAYS_ID_PUBLISH']),
-        ('org', org_transformer, ['ORGANIZATION_TYPE']),
-        ('cat', categorical_transformer, ["CODE_GENDER", "FLAG_OWN_CAR"])
-    ])
-# Load data
-data = pd.read_csv('application_train.csv')  # Adjust path as needed
-import joblib
-# Apply preprocessing pipeline
-data_preprocessed = preprocessor.fit_transform(data)
-
-# Save the fitted preprocessor
-joblib.dump(preprocessor, 'fitted_preprocessor_py3.pkl', protocol=2)

@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 import joblib
 import pandas as pd
-
+from transformers import BirthAnonymizer, PublishCategorizer, OrgTypePseudonymizer, IDAnonymizer, BoxCoxTransformer  # Ensure these are imported
 # Define your FastAPI app
 app = FastAPI()
 
