@@ -121,7 +121,7 @@ preprocessor = ColumnTransformer(
         ('cat', categorical_transformer, ["CODE_GENDER", "FLAG_OWN_CAR"])
     ])
 # Load data
-data = pd.read_csv('C:/Users/33753/Desktop/Cours/Examen bloc 4/application_train.csv')  # Adjust path as needed
+data = pd.read_csv('application_train.csv')  # Adjust path as needed
 import joblib
 # Apply preprocessing pipeline
 data_preprocessed = preprocessor.fit_transform(data)
