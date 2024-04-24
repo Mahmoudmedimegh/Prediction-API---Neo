@@ -1,1 +1,1 @@
-web: gunicorn mlapi:app -k uvicorn.workers.UvicornWorker
+web: uvicorn mlapi:app --host 0.0.0.0 --port $PORT
