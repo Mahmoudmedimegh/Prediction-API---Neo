@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 import joblib
 import pandas as pd
-from transformers import BirthAnonymizer, PublishCategorizer, OrgTypePseudonymizer, IDAnonymizer, BoxCoxTransformer  # Ensure these are imported
+
 # Define your FastAPI app
 app = FastAPI()
 
@@ -30,7 +30,7 @@ preprocessor = joblib.load('fitted_preprocessor_py3.pkl')
 @app.post('/predict_proba', summary="Predict client score probability to loan eligibility")
 async def scoring_endpoint(item: ScoringItem):
     # Convert Pydantic object to DataFrame
-    df = pd.DataFrame([item.dict()])
+    df = pd.DataFrame([item.dict()], index=[0])
 
     try:
         # Preprocess the data
